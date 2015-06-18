@@ -1,0 +1,40 @@
+CSE/EEE 230 Summer 2015 Assignment 4
+Due June 15 11:59PM
+
+Write and test a MIPS program consisting of four functions.  In the following descriptions, the symbol & means “address of”.
+1.	void main():  The main function must print your name, call readInts to place the values into an array of 10 integers and then call the print function to complete the program.  
+	The main function must set up all parameters before calling each of the functions.
+
+2.	int readints (&array): The starting address of an array is passed to the function as a parameter (using $a0).  
+	The function must prompt for, read and store integers in the array until either a negative numbers is entered or 10 numbers are read.  
+	Once the tenth integer is entered, your program must stop reading.  
+	The function must return (using $v0) the number of values read and stored in the array (10 or less). 
+	The negative input is not part of the array and must not be stored in the array.  
+	If the first input is a negative number, then the array will be empty and the count returned is zero.
+
+3.	float average (&array, count): The starting address of an array (in $a0) and the number of integers stored in the array (in $a1) are passed to the function.  
+	The purpose of the function is to calculate and return (using $f0) the floating point average of the numbers.  
+	To find the average, sum all the integers together and then divide by the count.  
+	You will need to convert the sum and count to floating point values before dividing in order to get a floating point result.  
+	Do not convert the integers in the array to floating point.  If the count is zero, return 0.0.
+
+4.	void print (&array, count):  The starting address of an array (in $a0) and the number of integers stored in the array (in $a1) are passed to the function.  
+	The function should print all integers store in the array on one line, each separated by a blank.   
+	Then the average function is called to determine the average value.  The returned value is then printed.  
+	As this function calls another function, it must store the $ra on the stack and then restore it at the end.
+
+Example input and output:
+
+Katy Perry
+Enter a number 3
+Enter a number 6
+Enter a number 2
+Enter a number 4
+Enter a number -1
+3 6 2 4 
+3.750000000
+
+In addition,
+?	Functions must be called using jal and return using jr.
+?	Parameters must be passed as specified and used correctly.   The readints, average and print functions must access the array through the parameter $a0, not determine the address directly.
+?	Be sure to comment all instructions.  All functions must include comments describing the function and its parameters and return value (if any).

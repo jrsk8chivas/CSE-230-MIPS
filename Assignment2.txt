@@ -1,0 +1,48 @@
+CSE/EEE 230 Summer 2015
+Assignment 2
+Due June 1 11:59PM
+
+Write a program to do the following:
+
+1.	Print your name
+2.	Prompt for and read two integers.
+3.	If the first number read is less than the second number, print the numbers from the first to the second (inclusive).  Separate input with a space
+	Else if the second number is less than the first number, print the numbers from the first down to the second (inclusive).  Separate input with a space.
+	Else print one of the numbers.
+4.	Print an ending message and then end your program.
+
+Example input and output for 3 executions of the program.
+
+Tom Smith
+
+Enter a number 6
+Enter a number 3
+6 5 4 3
+
+Program complete
+
+Tom Smith
+
+Enter a number -1
+Enter a number 2
+-1 0 1 2
+
+Program complete
+
+Tom Smith
+
+Enter a number 2
+Enter a number 2
+2
+
+Program complete
+
+
+Specifics:
+•	Use only the instructions covered to date.  Do not use any pseudo-instructions.
+•	Document the beginning of your program with your name, class, and assignment number.
+•	Document every instruction.
+
+Assignment 2 submittal:
+•	Submit your assembly language program file.  If your file is correctly uploaded, then you will see an exclamation mark (!) for the grade.
+

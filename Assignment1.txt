@@ -1,0 +1,56 @@
+CSE/EEE 230 Assignment 1 
+Due May 23, 2014 (11:59PM) 
+50 points
+
+This assignment is designed to introduce you to the MIPS assembly language, using registers and memory, input/output syscalls and the MIPS simulator. 
+
+VERY IMPORTANT: You are restricted to the core instructions for this assignment, DO NOT use any pseudoinstructions.  
+Turn off the option on MARS under settings that allows the use of these instructions,  This means you must use the standard formats and no use of li or la instructions.
+
+a. Open the text editor and type in the following. Then save your work as assign1.asm 
+
+.data 
+val1: .word 1 
+val2: .word 2 
+val3: .word 3 
+.globl main 
+.text 
+main:
+
+b. Add the following zero terminated ASCII strings to the data segment (before the .globl). 
+
+1. Your name 
+2. “Enter a number “ 
+3. A new line (“\n”) 
+
+c. Add the MIPS assembly language instructions after the main for the following actions.  
+Do not skip or change the order of the steps.   
+Note that the variables val1, val2, and val3 represent addresses or locations in memory in the data segment.  Use other registers if needed. 
+
+1. Initialize the register $s0 to 30 
+2. Prompt the user to enter a number, read the number and place it into register $s1 
+3. Prompt the user to enter a number, read the number and place it into register $s2 
+4. Store the value in $s1 into the memory labeled “val1” 
+5. Store the value in $s2 into the memory labeled “val2” 
+6. Calculate the value of $s0 - $s1 + ($s2 – 4) and store the result in the memory labeled “val3” 
+7. Print the following output each on its own line 
+a. Your name 
+b. The value in val1 
+c. The value in val2
+d. The value in val3
+8. Add 1 to the value in val2
+9. Exchange or swap the values in val1 and val2
+10. Set the value in $s0 to –$s0 
+11. Print the values in $s0, $s1 and $s2
+
+Specifics: 
+•	Use only the instructions covered to date. 
+•	Stop the program by using a syscall with the command 10.
+
+Documentation: 
+•	Comment the beginning of your programs with your name, class, and assignment number. 
+•	Comment each step (above).
+•	Comment every instruction. 
+
+Assignment submittal: 
+•	Upload your assembly language program (.asm file) using the link on Blackboard. 

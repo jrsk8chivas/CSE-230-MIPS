@@ -1,0 +1,101 @@
+CSE/EEE 230 
+Assignment 3
+Due June 8th 11:59PM
+
+In this assignment, you are to complete a MIPS program so it will perform the required tasks.  The main function of the code is provided.  
+You are to complete the program by writing six functions.  
+Pay particular attention to the purpose of each function and how the parameters and stack are to be used.
+
+
+1.	print
+		$a0 – address of a string to print
+		$a1 – value of an integer value to print
+		$a2 – boolean value (1 to print both string and integer, 0 to print just 
+			string)
+
+This function must first print the string, then if $a2 holds a 1 (true) print the integer.  
+Both outputs must be on the same line. End the output with a newline.  
+This function is called from another function so you MUST save the $ra on the stack (not another register).
+
+2.	divide
+		$a0 – first integer
+		$a1 – second integer
+		$v0 – first integer / second integer
+
+This function is to calculate and return the result of dividing the first argument by the second argument.  
+Integer division is done.  You may assume that both arguments are greater than zero.  
+You must calculate the result using a loop - using a version of the div instruction is NOT ACCEPTABLE.
+
+3.	mod
+		$a0 – first integer
+		$a1 – second integer
+		$v0 – first integer % second integer
+
+This function is to calculate and return the remainder of dividing the first argument by the second argument.  
+Integer division is done.  You may assume that both arguments are greater than zero.  
+You must calculate the result using a loop - using a version of the div instruction is NOT ACCEPTABLE.
+ 
+
+4.	getpos	
+		$a0 – prompt
+		$v0 – positive integer input
+
+This function will print the prompt string by calling the print function (above) and then get input from the user.  
+This process is repeated until a value greater than zero is input.  The value is returned in $v0.
+
+5.	getinput
+		$a0 – address to store the first value
+		$a1 – address to store the second value
+
+This function will call the getpos function two times and store each return value into the memory locations given in $a0 and $a1.  
+		
+General:
+1.	Do not use pseudo-instuctions.  
+2.	All calls to the functions must be done through jal and returns through jr.
+3.	Your code must be documented for each function.  Describe which registers are used in the function and how they are used.
+
+Submit your file with the complete program.
+
+.data
+num1: .word 0
+num2: .word 0
+
+text1: .asciiz "\nremainder "
+text2: .asciiz "\ndivision "
+name: .asciiz "\n..."
+.text
+.globl main
+
+main:
+	
+	lui $a0, 0x1001		# get start of data
+	addiu $a0, $a0, 0x001f	# get start of name
+	andi $a2, $0, 0		# set flag to false
+	jal print			# print name
+
+	lui $a0, 0x1001		# set address of first word
+	addiu $a1, $a0, 4		# set address of second word
+	jal getinput		# call function to get input, store into memory
+		
+	lui $t0, 0x1001		# get address of first word
+	lw $a0, 0($t0)		# get the first value from memory
+	lw $a1, 4($t0)		# get the second value from memory
+	jal divide			# divide the values, result in $v0
+	addi $a1, $v0, 0		# get value to print from $v0
+	lui $a0, 0x1001		# get start of data section
+	addi $a0, $a0, 0x14		# get start of divide output string
+	ori $a2, $0, 1		# set flag to true
+	jal print			# print result
+	
+	lui $t0, 0x1001		# get address of first word
+	lw $a0, 0($t0)		# get first value from memory
+	lw $a1, 4($t0)		# get second value from memory
+	jal mod			# divide the values, remainder in $v0
+	addi $a1, $v0, 0		# get value to print from $v0
+	lui $a0, 0x1001		# get start of data section
+	addi $a0, $a0, 8		# get start of remainder output string
+	ori $a2, $0, 1		# set flag to true
+	jal print			# print result
+	
+	ori $v0, $0, 10		# set command to stop program,
+	syscall			
